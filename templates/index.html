@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo">
+            <h1>Leaf Nutrient Deficiency Analyzer</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="info-panel">
+            <h2>Analyze Your Plant Leaf</h2>
+            <p>Upload a clear image of your plant leaf to detect nutrient deficiencies and get recommendations for treatment.</p>
+        </section>
+
+        <section class="upload-container">
+            <form id="upload-form" action="/api/analyze" method="post" enctype="multipart/form-data">
+                <div class="file-upload">
+                    <div class="file-upload-preview" id="preview-container">
+                        <i class="fas fa-leaf upload-icon"></i>
+                        <p>Drag and drop your leaf image or click to browse</p>
+                    </div>
+                    <input type="file" id="file" name="file" accept="image/png, image/jpeg" required>
+                </div>
+                
+                <div class="options">
+                    <label class="toggle">
+                        <input type="checkbox" id="include_plots" name="include_plots" value="true">
+                        <span class="toggle-slider"></span>
+                        Include Analysis Plots
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-microscope"></i> Analyze Leaf
+                </button>
+            </form>
+        </section>
+
+        <section class="result-container">
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing your leaf image...</p>
+            </div>
+            <div id="result" class="result-panel"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Leaf Nutrient Deficiency Analyzer</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
